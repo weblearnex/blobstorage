@@ -38,6 +38,13 @@
 			<groupId>com.azure</groupId>
 			<artifactId>azure-identity</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.microsoft.azure</groupId>
+			<artifactId>spring-cloud-azure-autoconfigure</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+
+
 
 	</dependencies>
 	<dependencyManagement>

@@ -7,6 +7,7 @@ import com.azure.storage.blob.BlobServiceClient;
 import com.azure.storage.blob.BlobServiceClientBuilder;
 import com.azure.storage.blob.specialized.BlockBlobClient;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.PostConstruct;
@@ -29,7 +30,10 @@ public class PocController {
     @Value("${azure.storage.container:local}")
     private String containerName;
 
-    @PostConstruct
+    @Autowired
+    BlobServiceClientBuilder blobServiceClientBuilder;
+
+    /*@PostConstruct
     private void setupBlobClient() {
         try {
             log.info("Initiating call to connect azure server");
@@ -53,11 +57,12 @@ public class PocController {
             log.error("Fail to connect azure server",e);
             e.printStackTrace();
         }
-    }
+    }*/
 
     @PutMapping("/blob/{name}")
     public String uploadBlob(@PathVariable String name, @RequestParam String content) {
         try {
+            blobContainerClient = blobServiceClientBuilder.buildClient().getBlobContainerClient(containerName);
             log.info("Initiating call to connect blob client");
             BlockBlobClient blobClient = blobContainerClient.getBlobClient(name).getBlockBlobClient();
             InputStream dataStream = new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8));
