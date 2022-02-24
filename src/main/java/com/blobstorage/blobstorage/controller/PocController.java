@@ -88,4 +88,9 @@ public class PocController {
                     name, accountName, containerName, ex.getMessage());
         }
     }
+
+    @GetMapping(path="/blob/data/{name}")
+    public String helloMessage(@PathVariable String name) {
+        return "hello"+name;
+    }
 }
