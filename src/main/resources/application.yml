@@ -1,0 +1,4 @@
+azure:
+  storage:
+    account: https://viru1234.blob.core.windows.net/
+    container: image
