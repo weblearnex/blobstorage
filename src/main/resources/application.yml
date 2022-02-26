@@ -1,4 +1,4 @@
 azure:
   storage:
-    account: https://viru1234.blob.core.windows.net/
+    account: blobservice232
     container: image
